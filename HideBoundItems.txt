@@ -1,0 +1,10 @@
+## Title: Hide Bound Items
+## Author: Randactyl
+## Version: 1.0.0.0
+## APIVersion: 100011
+## OptionalDependsOn: libFilters
+
+lib\LibStub\LibStub.lua
+lib\libFilters\LibFilters.lua
+
+HideBoundItems.lua

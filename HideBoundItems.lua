@@ -14,3 +14,6 @@ end
 
 EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_GUILD_BANK, HideBoundItems)
 EVENT_MANAGER:RegisterForEvent("UnhideBoundItems", EVENT_CLOSE_GUILD_BANK, UnhideBoundItems)
+
+EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_TRADING_HOUSE, HideBoundItems)
+EVENT_MANAGER:RegisterForEvent("UnhideBoundItems", EVENT_OPEN_TRADING_HOUSE, UnhideBoundItems)

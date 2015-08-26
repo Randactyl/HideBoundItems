@@ -6,10 +6,12 @@ local function HideBoundItems()
 	end
 
 	libFilters:RegisterFilter("HideBoundItems", LAF_BAGS, filterCallback)
+	libFilters:RequestInventoryUpdate(LAF_BAGS)
 end
 
 local function UnhideBoundItems()
 	libFilters:UnregisterFilter("HideBoundItems", LAF_BAGS)
+	libFilters:RequestInventoryUpdate(LAF_BAGS)
 end
 
 EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_GUILD_BANK, HideBoundItems)

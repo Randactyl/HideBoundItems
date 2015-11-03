@@ -1,21 +1,23 @@
 local libFilters = LibStub("libFilters")
 
-local function HideBoundItems()
-	local function filterCallback(slot)
-		return not IsItemBound(slot.bagId, slot.slotIndex)
-	end
+local function filterCallback(slot)
+	return not IsItemBound(slot.bagId, slot.slotIndex)
+end
 
+local function HideBoundItemsAtBank()
 	libFilters:RegisterFilter("HideBoundItems", LAF_BAGS, filterCallback)
-	libFilters:RequestInventoryUpdate(LAF_BAGS)
+end
+
+local function HideBoundItemsAtAuction()
+	libFilters:RegisterFilter("HideBoundItems", LAF_GUILDSTORE, filterCallback)
 end
 
 local function UnhideBoundItems()
-	libFilters:UnregisterFilter("HideBoundItems", LAF_BAGS)
-	libFilters:RequestInventoryUpdate(LAF_BAGS)
+	libFilters:UnregisterFilter("HideBoundItems")
 end
 
-EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_GUILD_BANK, HideBoundItems)
+EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_GUILD_BANK, HideBoundItemsAtBank)
 EVENT_MANAGER:RegisterForEvent("UnhideBoundItems", EVENT_CLOSE_GUILD_BANK, UnhideBoundItems)
 
-EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_TRADING_HOUSE, HideBoundItems)
-EVENT_MANAGER:RegisterForEvent("UnhideBoundItems", EVENT_OPEN_TRADING_HOUSE, UnhideBoundItems)
+EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_TRADING_HOUSE, HideBoundItemsAtAuction)
+EVENT_MANAGER:RegisterForEvent("UnhideBoundItems", EVENT_CLOSE_TRADING_HOUSE, UnhideBoundItems)

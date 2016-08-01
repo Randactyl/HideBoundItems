@@ -1,19 +1,24 @@
-local libFilters = LibStub("libFilters")
+local LibFilters = LibStub("LibFilters-2.0")
+LibFilters:InitializeLibFilters()
 
 local function filterCallback(slot)
 	return not IsItemBound(slot.bagId, slot.slotIndex)
 end
 
 local function HideBoundItemsAtBank()
-	libFilters:RegisterFilter("HideBoundItems", LAF_BAGS, filterCallback)
+	LibFilters:RegisterFilter("HideBoundItems", LF_GUILDBANK_DEPOSIT, filterCallback)
+	LibFilters:RequestUpdate(LF_GUILDBANK_DEPOSIT)
 end
 
 local function HideBoundItemsAtAuction()
-	libFilters:RegisterFilter("HideBoundItems", LAF_GUILDSTORE, filterCallback)
+	LibFilters:RegisterFilter("HideBoundItems", LF_GUILDSTORE_SELL, filterCallback)
+	LibFilters:RequestUpdate(LF_GUILDSTORE_SELL)
 end
 
 local function UnhideBoundItems()
-	libFilters:UnregisterFilter("HideBoundItems")
+	LibFilters:UnregisterFilter("HideBoundItems")
+	LibFilters:RequestUpdate(LF_GUILDBANK_DEPOSIT)
+	LibFilters:RequestUpdate(LF_GUILDSTORE_SELL)
 end
 
 EVENT_MANAGER:RegisterForEvent("HideBoundItems", EVENT_OPEN_GUILD_BANK, HideBoundItemsAtBank)

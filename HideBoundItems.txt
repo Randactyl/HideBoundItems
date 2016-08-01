@@ -4,6 +4,7 @@
 ## APIVersion: 100014
 
 lib\LibStub\LibStub.lua
-lib\libFilters\libFilters.lua
+lib\LibFilters-2.0\LibFilters-2.0.lua
+lib\LibFilters-2.0\helper.lua
 
 HideBoundItems.lua
